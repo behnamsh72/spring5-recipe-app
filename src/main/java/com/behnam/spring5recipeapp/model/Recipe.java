@@ -18,7 +18,11 @@ public class Recipe {
     private String url;
     private String directions;
     //todo ADD
-    //private Difficulty difficulty;
+
+
+    //enumtype ordinal saved data in database as 1 2 or 3 but string saves his name
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
     //mapped by is the target property on the ingredient class
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
@@ -30,6 +34,10 @@ public class Recipe {
     //using cascade for if we delete recipe automaticly delete it's note object
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
+
+    @ManyToMany
+    @JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
     public Long getId() {
         return id;
@@ -117,5 +125,21 @@ public class Recipe {
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
