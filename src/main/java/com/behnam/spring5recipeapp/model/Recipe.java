@@ -1,6 +1,7 @@
 package com.behnam.spring5recipeapp.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -18,6 +19,9 @@ public class Recipe {
     private String directions;
     //todo ADD
     //private Difficulty difficulty;
+    //mapped by is the target property on the ingredient class
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
 
     //using Lob for large object storage
     //it's create a binary large update field
@@ -105,5 +109,13 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
