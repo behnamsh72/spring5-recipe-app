@@ -28,6 +28,9 @@ class CategoryTest {
 
     @Test
     void getDescription() {
+        String description = "NonOfDescription";
+        category.setDescription(description);
+        assertEquals(description, category.getDescription());
     }
 
     @Test
