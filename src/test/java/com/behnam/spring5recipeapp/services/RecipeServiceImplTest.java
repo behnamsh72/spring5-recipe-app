@@ -1,5 +1,7 @@
 package com.behnam.spring5recipeapp.services;
 
+import com.behnam.spring5recipeapp.convertors.RecipeCommandToRecipe;
+import com.behnam.spring5recipeapp.convertors.RecipeToRecipeCommand;
 import com.behnam.spring5recipeapp.model.Recipe;
 import com.behnam.spring5recipeapp.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,13 +24,20 @@ class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+
     @BeforeEach
     void setUp() {
 
         //Mockito give me a recipe repository
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
 

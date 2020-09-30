@@ -8,19 +8,21 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NotesCommandToNotes implements Converter<NotesCommand, Notes> {
+public class NotesToNotesCommand implements Converter<Notes, NotesCommand> {
 
 
-    @Synchronized
+
+
     @Nullable
+    @Synchronized
     @Override
-    public Notes convert(NotesCommand source) {
-
+    public NotesCommand convert(Notes source) {
         if (source == null)
             return null;
-        final Notes notes=new Notes();
-        notes.setId(source.getId());
-        notes.setRecipeNotes(source.getRecipeNotes());
-        return notes;
+
+        final NotesCommand notesCommand = new NotesCommand();
+        notesCommand.setId(source.getId());
+        notesCommand.setRecipeNotes(source.getRecipeNotes());
+        return notesCommand;
     }
 }
