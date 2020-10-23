@@ -5,8 +5,7 @@ import com.behnam.spring5recipeapp.model.UnitOfMeasure;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.*;
 
 public class UnitOfMeasureCommandToUnitOfMeasureTest {
 
@@ -23,7 +22,7 @@ public class UnitOfMeasureCommandToUnitOfMeasureTest {
 
     @Test
     public void testNullParameter() throws Exception {
-        assertNotNull(converter.convert(null));
+        assertNull(converter.convert(null));
     }
 
     @Test
