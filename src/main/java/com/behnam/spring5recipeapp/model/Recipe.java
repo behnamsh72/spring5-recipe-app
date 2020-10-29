@@ -1,8 +1,10 @@
 package com.behnam.spring5recipeapp.model;
 
 import lombok.Data;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,6 +26,8 @@ public class Recipe {
     private String directions;
     //todo ADD
 
+    @UpdateTimestamp
+    private Calendar lastUpdateDate;
 
     //enumtype ordinal saved data in database as 1 2 or 3 but string saves his name
     @Enumerated(value = EnumType.STRING)
